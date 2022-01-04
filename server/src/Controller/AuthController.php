@@ -4,7 +4,8 @@
 
 
  use App\Entity\User;
- use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
+use App\Repository\UserRepository;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
  use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  use Symfony\Component\HttpFoundation\JsonResponse;
  use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +17,7 @@
  class AuthController extends ApiController
  {
 
-  public function register(Request $request, UserPasswordEncoderInterface $encoder)
+  public function register(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $userRepository)
   {
    $em = $this->getDoctrine()->getManager();
    $request = $this->transformJsonBody($request);
@@ -28,6 +29,16 @@
     return $this->respondValidationError("Invalid Username or Password or Email");
    }
 
+   $userByUsername = $userRepository->findBy(['username' => $username]);
+   $userByEmail = $userRepository->findBy(['email' => $email]);
+
+   if ($userByUsername){
+    return $this->respondValidationError("User with this username already exists");
+   }
+
+   if ($userByEmail){
+    return $this->respondValidationError("User with this email already exists");
+   }
 
    $user = new User($username);
    $user->setPassword($encoder->encodePassword($user, $password));

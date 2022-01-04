@@ -109,7 +109,10 @@
    */
   public function respondValidationError($message = 'Validation errors')
   {
-   return $this->setStatusCode(422)->respondWithErrors($message);
+   return new JsonResponse([
+       'code' => 422,
+       'message' => $message
+   ]);
   }
 
   /**

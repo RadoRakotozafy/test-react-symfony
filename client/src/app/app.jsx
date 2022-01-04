@@ -7,6 +7,7 @@ import {
 import CarsList from '../components/CarsList/CarsList';
 import Header from '../components/Layouts/Header';
 import Login from '../components/Login';
+import Register from '../components/Register';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<CarsList />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
     </Router>
     

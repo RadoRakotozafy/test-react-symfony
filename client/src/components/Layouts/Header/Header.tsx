@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Header.css';
 
 export interface HeaderProps {}
 
@@ -22,18 +23,33 @@ function Header({ }: HeaderProps) {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarExample01">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item active">
-                                <a className="nav-link" aria-current="page" onClick={() => {
-                                    navigate(`/login`, {
-                                        state: {
-                                          datetime: Date.now()
-                                        }
-                                    });
-                                }}>Login</a>
-                            </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Register</a>
+                                <a className="nav-link" onClick={() => {
+                                        navigate(`/`);
+                                }} >Home</a>
                             </li>
+                            {
+                                localStorage.getItem('token') ? 
+                                <li className="nav-item">
+                                    <a className="nav-link" aria-current="page" onClick={() => {
+                                        localStorage.removeItem('token');
+                                        navigate(`/login`);
+                                    }}>Logout</a>
+                                </li>
+                                :
+                                <>
+                                    <li className="nav-item">
+                                        <a className="nav-link" aria-current="page" onClick={() => {
+                                            navigate(`/login`);
+                                        }}>Login</a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link" onClick={() => {
+                                            navigate(`/register`);
+                                        }}>Register</a>
+                                    </li>
+                                </>
+                            }
                         </ul>
                     </div>
                 </div>

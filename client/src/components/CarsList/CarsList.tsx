@@ -86,14 +86,16 @@ function CarsList({ }: CarsListProps) {
                                         <td>{ item.name }</td>
                                         <td>
                                             {
+                                                item.comments ? 
                                                 item.comments.length > 0 ?
-                                                <ul>
-                                                    {
-                                                        item.comments.map((comment: CommentProps) => 
-                                                            <li>{comment.content} (<i>{comment.user}</i>)</li>
-                                                        )
-                                                    }
-                                                </ul>
+                                                    <ul>
+                                                        {
+                                                            item.comments.map((comment: CommentProps) => 
+                                                                <li key={"comment-" + comment.id}>{comment.content} (<i>{comment.user}</i>)</li>
+                                                            )
+                                                        }
+                                                    </ul>
+                                                    : null
                                                 : null
                                             }
                                         </td>
