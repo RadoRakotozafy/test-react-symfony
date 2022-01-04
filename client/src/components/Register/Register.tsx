@@ -63,7 +63,7 @@ function Register({ }: RegisterProps) {
                     <input type="text" id="login" className="fadeIn second form-control" name="login" placeholder="login" onChange={e => setlogin(e.target.value)}/>
                     <input type="text" id="email" className="fadeIn third form-control" name="email" placeholder="email" onChange={e => setemail(e.target.value)} />
                     <input type="text" id="password" className="fadeIn third form-control" name="password" placeholder="password" onChange={e => setpassword(e.target.value)} />
-                    <input type="button" className="fadeIn fourth" value="Log In" onClick={handleSubmit} />
+                    <input type="button" className="fadeIn fourth" value="Register" onClick={handleSubmit} />
                 </form>
 
                 {

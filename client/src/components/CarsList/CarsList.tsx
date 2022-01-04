@@ -76,6 +76,7 @@ function CarsList({ }: CarsListProps) {
                                 <th>Id</th>
                                 <th>Nom</th>
                                 <th>Commentaires</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,6 +97,15 @@ function CarsList({ }: CarsListProps) {
                                                         }
                                                     </ul>
                                                     : null
+                                                : null
+                                            }
+                                        </td>
+                                        <td>
+                                            {
+                                                localStorage.getItem('token') ? 
+                                                <button className='btn btn-info' onClick={() => {
+                                                    navigate(`/comment/${item.id}/${item.name}`);
+                                                }}>Commenter</button>
                                                 : null
                                             }
                                         </td>

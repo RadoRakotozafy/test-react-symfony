@@ -4,6 +4,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import AddComment from '../components/AddComment';
 import CarsList from '../components/CarsList/CarsList';
 import Header from '../components/Layouts/Header';
 import Login from '../components/Login';
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<CarsList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/comment/:id/:slug" element={<AddComment />} />
         </Routes>
     </Router>
     
